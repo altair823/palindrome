@@ -1,10 +1,12 @@
-//
+//  <실패>
 //  main.c
 //  jiwons
 //
 //  Created by 김태현 on 2020/10/12.
 //
 //  두 숫자를 입력받고 회문에서 그 두 숫자사이의 범위에서 다시 만들어질 수 있는 회문의 최대 길이를 구하는 프로그램.
+
+//설계에 치명적인 복잡함 발견. 바닥부터 다시 만들 필요가 있음.
 
 
 #include <stdio.h>
@@ -25,8 +27,8 @@ void inputRange(int palMax, int* range1, int* range2);
 //매개변수로 주어진 수열이 회문인지 아닌지 판단하는 함수
 int isItPalindrome(int* list, int length);
 
-//수열을 매개변수로 받아 그 중에서 나올 수 있는 회문의 최대 길이를 구하는 함수
-int maxPalLength(int* list, int length);
+//수열과 그 길이를 매개변수로 받아 나올 수 있는 수열들을 구하여
+int searchPossibleList(int* list, int length);
 
 //입력받은 범위의 개수만큼 범위를 묻고 매번 회문의 최대 길이를 출력하는 함수
 void palMaxLength(int* pal, int palLength, int rangeCount);
@@ -215,17 +217,30 @@ int isItPalindrome(int* list, int length){
     return 0;
 }
 
-int maxPalLength(int* list, int length){
-    /*
+int searchPossibleList(int* list, int length){
+    
     int i, j;
+    int minListNum, maxListNum;
     int* checkList;
-    for (i=0; i<length; i++){
-        checkList = malloc(sizeof(int) * (i + 1));
-        for (j=0; j<i; j++){
+    
+    int listLength = 1;
+    
+    //회문 여부를 체크할 임시 배열은 그 크기가 1부터 주어진 최대 배열 크기만큼 커진다.
+    for (listLength = 1; listLength <= length; listLength++){
+        
+        //회면 여부를 체크할 배열의 시작 지점은 주어진
+        for (minListNum = 0; minListNum + listLength - 1 < length; minListNum++){
+            
+            
+            //회문 여부를 체크할 임의의 배열을 동적 할당
+            //임시 배열은 1개짜리부터 주어진 최대 배열 크기만큼 커질것
+            checkList = malloc(sizeof(int) * (listLength + 1));
+            
+            
             
         }
     }
-    */
+    return 0;
 }
 
 void palMaxLength(int* pal, int palLength, int rangeCount){
